@@ -22,7 +22,7 @@ const config = {
 			strict: true
 		}),
 		paths: {
-			base: dev ? '/family-admin' : ''
+			base: dev ? '' : '/family-admin'
 		}
 	}
 };

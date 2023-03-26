@@ -6,6 +6,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"deploy": "pnpm run ts-node scripts/deploy.ts",
+		"build:deploy": "pnpm run build && pnpm run deploy",
 		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
