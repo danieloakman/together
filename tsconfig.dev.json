@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "CommonJS",
+    "lib": ["es2018", "esnext.asynciterable"],
+    "moduleResolution": "node",
+    "allowJs": false,
+    "checkJs": false,
+    "alwaysStrict": true,
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "incremental": false,
+    "outDir": "./dist"
+  },
+	"include": ["**/*.ts"],
+}
