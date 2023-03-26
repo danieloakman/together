@@ -1,4 +1,5 @@
 <script>
+	import { base } from '$app/paths';
 	import Header from './Header.svelte';
 	import './styles.css';
 	export const prerender = true;
@@ -9,7 +10,7 @@
 
 	<main>
 		<p>WORKING</p>
-		<img alt="Wombat" src="favicon.png" width="500px">
+		<img alt="Wombat" src="{base}/favicon.png" width="500px">
 		<slot />
 	</main>
 
