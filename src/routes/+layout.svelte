@@ -9,6 +9,7 @@
 
 	<main>
 		<p>WORKING</p>
+		<img alt="Wombat" src="favicon.png" width="500px">
 		<slot />
 	</main>
 
