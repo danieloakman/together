@@ -19,7 +19,7 @@ const config = {
 			pages: 'build',
 			assets: 'build',
 			fallback: 'index.html',
-			strict: false
+			strict: true
 		}),
 		paths: {
 			base: dev ? '/family-admin' : ''
