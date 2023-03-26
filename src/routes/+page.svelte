@@ -1,16 +1,16 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	// import Counter from './Counter.svelte';
+	// import welcome from '$lib/images/svelte-welcome.webp';
+	// import welcome_fallback from '$lib/images/svelte-welcome.png';
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Fabmin" />
 </svelte:head>
 
 <section>
-	<h1>
+	<!-- <h1>
 		<span class="welcome">
 			<picture>
 				<source srcset={welcome} type="image/webp" />
@@ -23,9 +23,9 @@
 
 	<h2>
 		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+	</h2> -->
 
-	<Counter />
+	<!-- <Counter /> -->
 </section>
 
 <style>
