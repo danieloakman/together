@@ -1,5 +1,4 @@
 /**
- * @experimental May move this to a different file.
  * @requires NodeJS
  * @description Declares and runs a main function if the entry point to the program is `module`. This is esstentially the same as
  * python's `if __name__ == '__main__'` block.
