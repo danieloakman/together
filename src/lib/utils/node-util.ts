@@ -1,13 +1,18 @@
+import { fileURLToPath } from 'url';
+
 /**
  * @requires NodeJS
- * @description Declares and runs a main function if the entry point to the program is `module`. This is esstentially the same as
+ * @description Declares and runs a main function if the entry point to the program is the current file. This is esstentially the same as
  * python's `if __name__ == '__main__'` block.
- * @param module The NodeModule where this main function is running from.
  * @param mainFunction The main function to run.
  */
-export function main(module: any, mainFunction: () => Promise<void>) {
-  if (require?.main !== module) return;
-  return mainFunction();
+export function main<T extends () => Promise<any>>(url: string, mainFunction: T): ReturnType<T> | undefined {
+  if (url.startsWith('file:')) {
+    const modulePath = fileURLToPath(url);
+    if (process.argv[1] === modulePath) {
+      return mainFunction() as ReturnType<T>;
+    }
+  }
 }
 
 /** Logs an error message then calls `process.exit` with an optionally given code. */

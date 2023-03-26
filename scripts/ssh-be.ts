@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { join } from 'path';
 import { spawn } from 'child_process';
-import { main } from '../src/lib/utils/node-util';
+import { main } from '../src/lib/utils/node-util.js';
 
 config({ path: join(process.cwd(), '.env') });
 
@@ -27,4 +27,4 @@ export async function connectToBE(): Promise<undefined> {
   });
 }
 
-main(module, connectToBE);
+main(import.meta.url, connectToBE);
