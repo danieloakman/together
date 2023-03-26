@@ -1,7 +1,7 @@
 import { publish } from 'gh-pages';
 
 publish(
- '.svelte-kit', // path to public directory
+ 'build', // path to public directory
  {
   branch: 'release/prod',
   repo: 'https://github.com/danieloakman/family-admin.git', // Update to point to your repository
