@@ -13,9 +13,9 @@ const config = {
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
 		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
 		// Ignore above comment, now using adapter-static:
-		adapter: adapter(),
+		adapter: adapter({ strict: false }),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/family-admin/' : ''
+			base: process.env.NODE_ENV === 'production' ? '/family-admin' : ''
 		}
 	}
 };
