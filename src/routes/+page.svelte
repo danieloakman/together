@@ -24,3 +24,8 @@
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 <p>cool ok</p>
 <button on:click={increment}>Count +{count}</button>
+<br />
+<button on:click={async () => {
+  const perm = await Filesystem.checkPermissions();
+  console.log({ perm });
+}}>Test</button>
