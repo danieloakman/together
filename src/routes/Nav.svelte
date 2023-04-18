@@ -1,0 +1,48 @@
+<script lang="ts">
+	import About from './about/About.svelte';
+	interface MenuItem {
+		name: string;
+	}
+
+	export const menuItems: MenuItem[] = [{ name: 'Home' }, { name: 'About' }];
+	export let selected = 0;
+
+	$: console.log({ selected });
+</script>
+
+<ion-menu content-id="main-content" side="end">
+	<!-- <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu Content</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+	<ion-content class="ion-padding">
+		{#each menuItems as menuItem, i}
+			<ion-item button on:click={() => (selected = i)}>{menuItem.name}</ion-item>
+		{/each}
+	</ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+	<ion-content class="ion-padding">
+    {#if selected === 0}
+      <h1>Home</h1>
+    {:else if selected === 1}
+      <About />
+    {/if}
+		<!-- {#if selected}
+			<h1>Home</h1>
+		{:else}
+			<h1>About</h1>
+		{/if} -->
+	</ion-content>
+
+	<ion-footer>
+		<ion-toolbar>
+			<ion-buttons slot="end">
+				<ion-menu-button />
+			</ion-buttons>
+			<ion-title>Menu</ion-title>
+		</ion-toolbar>
+	</ion-footer>
+</div>

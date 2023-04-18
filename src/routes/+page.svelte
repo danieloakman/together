@@ -2,21 +2,22 @@
 	import { Geolocation } from '@capacitor/geolocation';
 	import { Filesystem } from '@capacitor/filesystem';
 	import { onMount } from 'svelte';
+	import NavMenu from './Nav.svelte';
 	// interface IonButton {
 	// 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	// 	[key: string]: any;
 	// }
 
-	function sleep(time: number) {
-		return new Promise((resolve) => setTimeout(resolve, time));
-	}
+	// function sleep(time: number) {
+	// 	return new Promise((resolve) => setTimeout(resolve, time));
+	// }
 
-	onMount(async () => {
-		const position = await Geolocation.getCurrentPosition();
-		console.log(position.coords.latitude, position.coords.longitude);
-		const perm = await Filesystem.checkPermissions();
-		console.log({ perm });
-	});
+	// onMount(async () => {
+	// 	const position = await Geolocation.getCurrentPosition();
+	// 	console.log(position.coords.latitude, position.coords.longitude);
+	// 	const perm = await Filesystem.checkPermissions();
+	// 	console.log({ perm });
+	// });
 
 	let count = 1;
 	function increment() {
@@ -29,7 +30,7 @@
 	}
 </script>
 
-<ion-card>
+<!-- <ion-card>
 	<h1>Welcome to SvelteKit</h1>
 	<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 	<p>cool ok</p>
@@ -37,4 +38,7 @@
 	<br />
 	<slot />
 	<ion-button on:keydown={test} on:click={test}>Test</ion-button>
-</ion-card>
+</ion-card> -->
+<ion-content>
+	<NavMenu/>
+</ion-content>
