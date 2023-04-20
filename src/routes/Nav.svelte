@@ -1,10 +1,12 @@
 <script lang="ts">
 	import About from './about/About.svelte';
+	import SaveGPSImages from './GPS/SaveGPSImages.svelte';
+
 	interface MenuItem {
 		name: string;
 	}
 
-	export const menuItems: MenuItem[] = [{ name: 'Home' }, { name: 'About' }];
+	export const menuItems: MenuItem[] = [{ name: 'Home' }, { name: 'About' }, { name: 'Save GPS Images' }];
 	export let selected = 0;
 
 	$: console.log({ selected });
@@ -29,6 +31,8 @@
       <h1>Home</h1>
     {:else if selected === 1}
       <About />
+		{:else if selected === 2}
+			<SaveGPSImages />
     {/if}
 		<!-- {#if selected}
 			<h1>Home</h1>
