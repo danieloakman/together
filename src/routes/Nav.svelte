@@ -21,6 +21,7 @@
 	<ion-content class="ion-padding">
 		{#each menuItems as menuItem, i}
 			<ion-item button on:click={() => (selected = i)}>{menuItem.name}</ion-item>
+			<br/>
 		{/each}
 	</ion-content>
 </ion-menu>
