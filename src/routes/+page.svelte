@@ -2,7 +2,7 @@
 	import { Geolocation } from '@capacitor/geolocation';
 	import { Filesystem } from '@capacitor/filesystem';
 	import { onMount } from 'svelte';
-	import NavMenu from './Nav.svelte';
+	// import NavMenu from './Nav.svelte';
 	// interface IonButton {
 	// 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	// 	[key: string]: any;
@@ -39,6 +39,8 @@
 	<slot />
 	<ion-button on:keydown={test} on:click={test}>Test</ion-button>
 </ion-card> -->
+<!-- <ion-tab tab="Main"> -->
 <ion-content>
-	<NavMenu/>
+		<!-- <NavMenu/> -->
 </ion-content>
+<!-- </ion-tab> -->

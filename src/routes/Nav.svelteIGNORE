@@ -1,6 +1,6 @@
 <script lang="ts">
-	import About from './about/About.svelte';
-	import SaveGPSImages from './GPS/SaveGPSImages.svelte';
+	import About from './about/+page.svelte';
+	import SaveGPSImages from './gps/+page.svelte';
 
 	interface MenuItem {
 		name: string;
