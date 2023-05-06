@@ -1,46 +1,13 @@
-<script lang="ts">
-	import { Geolocation } from '@capacitor/geolocation';
-	import { Filesystem } from '@capacitor/filesystem';
-	import { onMount } from 'svelte';
-	// import NavMenu from './Nav.svelte';
-	// interface IonButton {
-	// 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	// 	[key: string]: any;
-	// }
+<ion-tab tab=""> <!-- tab="home" -->
+	<ion-card>
+		<ion-item>
+			<ion-label>About</ion-label>
+			<ion-button href="about" fill="outline" slot="end">View</ion-button>
+		</ion-item>
 
-	// function sleep(time: number) {
-	// 	return new Promise((resolve) => setTimeout(resolve, time));
-	// }
-
-	// onMount(async () => {
-	// 	const position = await Geolocation.getCurrentPosition();
-	// 	console.log(position.coords.latitude, position.coords.longitude);
-	// 	const perm = await Filesystem.checkPermissions();
-	// 	console.log({ perm });
-	// });
-
-	let count = 1;
-	function increment() {
-		count += 1;
-	}
-
-	async function test() {
-		const perm = await Filesystem.checkPermissions();
-		console.log({ perm });
-	}
-</script>
-
-<!-- <ion-card>
-	<h1>Welcome to SvelteKit</h1>
-	<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-	<p>cool ok</p>
-	<button on:click={increment}>Count +{count}</button>
-	<br />
-	<slot />
-	<ion-button on:keydown={test} on:click={test}>Test</ion-button>
-</ion-card> -->
-<!-- <ion-tab tab="Main"> -->
-<ion-content>
-		<!-- <NavMenu/> -->
-</ion-content>
-<!-- </ion-tab> -->
+		<ion-item>
+			<ion-label>Settings</ion-label>
+			<ion-button href="settings" fill="outline" slot="end">View</ion-button>
+		</ion-item>
+	</ion-card>
+</ion-tab>
