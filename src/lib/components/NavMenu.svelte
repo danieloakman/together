@@ -1,11 +1,11 @@
 <script lang="ts">
-  import IonTabs from 'ionic-svelte/components/IonTabs.svelte';
-  import { calendar, list, receipt, home, arrowBack } from 'ionicons/icons';
+	import IonTabs from 'ionic-svelte/components/IonTabs.svelte';
+	import { calendar, list, receipt, home, arrowBack } from 'ionicons/icons';
 	import { page } from '$app/stores';
-	import { capitalise, logout, currentUser } from '$lib';
+	import { capitalise, logout, currentUser, currentUserAvatar } from '$lib';
 	import { writable } from 'svelte/store';
 
-  interface Tab {
+	interface Tab {
 		label: string;
 		icon: string;
 		tab: string;
@@ -30,12 +30,12 @@
 		}
 	];
 
-  export const currentTab = writable(TABS[0]);
+	export const currentTab = writable(TABS[0]);
 
 	const logStuff = (...args: any[]) => {
 		const [event] = args;
 		const tab = TABS.find((tab) => tab.tab === event.detail.tab);
-    if (tab) currentTab.set(tab);
+		if (tab) currentTab.set(tab);
 	};
 
 	function routesFromUrl(url: URL): string[] {
@@ -45,31 +45,42 @@
 </script>
 
 <ion-menu content-id="main-content" side="end">
-  <ion-content class="ion-padding">
-    <ion-item on:keydown={logout} on:click={logout}>
-      <!-- <a href="/about">Settings</a> -->
-      <ion-text>{$currentUser?.username}</ion-text>
-      <ion-button slot="end" expand="block">Log out</ion-button>
-    </ion-item>
-  </ion-content>
+	<ion-content class="ion-padding">
+		<ion-item>
+			<ion-text>
+				<span>
+					{$currentUser?.name}
+				</span>
+			</ion-text>
+			<ion-avatar slot="end"><img alt="User Avatar" src={$currentUserAvatar} /></ion-avatar>
+		</ion-item>
+
+		<ion-button expand="block" on:keydown={logout} on:click={logout}>Log out</ion-button>
+	</ion-content>
 </ion-menu>
 
 <!-- Header/toolbar: -->
 <ion-toolbar id="main-content">
-  <ion-buttons slot="end">
-    <ion-menu-button />
-  </ion-buttons>
-  {#if routesFromUrl($page.url).length > 1}
-    <a style="padding-left: 8px" href="..">
-      <ion-icon icon={arrowBack} />
-    </a>
-  {/if}
-  <ion-text style="padding-left: 8px"
-    >{routesFromUrl($page.url).map(capitalise).join(' / ')}</ion-text
-  >
+	<ion-buttons slot="end">
+		<ion-menu-button />
+	</ion-buttons>
+	{#if routesFromUrl($page.url).length > 1}
+		<a style="padding-left: 8px" href="..">
+			<ion-icon icon={arrowBack} />
+		</a>
+	{/if}
+	<ion-text style="padding-left: 8px"
+		>{routesFromUrl($page.url).map(capitalise).join(' / ')}</ion-text
+	>
 </ion-toolbar>
 
 <!-- Bottom tabs: -->
 <IonTabs slot="bottom" tabs={TABS} ionTabsWillChange={logStuff}>
-  <slot />
+	<slot />
 </IonTabs>
+
+<style>
+	ion-item {
+		padding-bottom: 8px;
+	}
+</style>

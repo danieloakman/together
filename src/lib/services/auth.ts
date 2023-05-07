@@ -1,6 +1,7 @@
-import pb from './pocketbase';
+import { pb, fileUrl } from './pocketbase';
+import { env } from '../utils'
 import type { PBBaseModel, CollectionRecord } from './pocketbase';
-import { writable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
 export interface User extends PBBaseModel, CollectionRecord {
   avatar: string;
@@ -13,6 +14,14 @@ export interface User extends PBBaseModel, CollectionRecord {
 
 /** If null then is not auth'd. */
 export const currentUser = writable(pb.authStore.model as User | null);
+export const currentUserAvatar = derived(currentUser, $u => {
+  if (!$u?.avatar) return 'default-avatar.png';
+  return fileUrl($u.collectionId, $u.id, $u.avatar);
+});
+
+currentUser.subscribe(user => {
+  console.log('currentUser.subscribe', user);
+});
 
 pb.authStore.onChange(auth => {
   console.log('pb.authStore.onChange', auth);

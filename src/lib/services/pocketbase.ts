@@ -11,3 +11,7 @@ export interface CollectionRecord {
   collectionId: string;
   collectionName: string;
 }
+
+export function fileUrl(collectionId: string, id: string, filename: string) {
+  return `${env.POCKETBASE_URL}/api/files/${collectionId}/${id}/${filename}`;
+}
