@@ -34,8 +34,15 @@
 				labelPlacement="floating"
 				bind:value={username}
 				type="text"
+				disabled={loading}
 			/>
-			<Input label="Password" labelPlacement="floating" bind:value={password} type="password" />
+			<Input
+				label="Password"
+				labelPlacement="floating"
+				bind:value={password}
+				type="password"
+				disabled={loading}
+			/>
 			<br />
 
 			<ion-text color="danger">{error}</ion-text>
@@ -46,6 +53,7 @@
 				on:click={submit}
 				type="submit"
 				expand="block"
+				style="justify-content: center;"
 			>
 				Log in
 				{#if loading}
