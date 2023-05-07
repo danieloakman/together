@@ -9,8 +9,7 @@
 	async function submit() {
 		loading = true;
 		try {
-			const result = await login(username, password);
-			console.log(result);
+			await login(username, password);
 		} catch (e: any) {
 			error = e.message;
 		} finally {
@@ -54,6 +53,8 @@
 				{/if}
 			</ion-button>
 		</form>
+
+		<!-- <ion-button on:click={() => loginWithProvider('google')}>Log in with Google</ion-button> -->
 	</ion-card-content>
 </ion-card>
 
