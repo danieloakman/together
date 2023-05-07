@@ -1,4 +1,6 @@
 name = "fabmin-api"
 main = "src/index.ts"
 compatibility_date = "2023-05-07"
-
+# kv_namespaces = [
+#   { binding = "FABMIN", id = "530921f0e49f4cf7a2461b5988f33feb" }
+# ]

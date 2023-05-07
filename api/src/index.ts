@@ -1,3 +1,5 @@
+// import puppeteer from 'puppeteer';
+import { OpenAIApi } from 'openai';
 /**
  * Welcome to Cloudflare Workers! This is your first worker.
  *
@@ -9,6 +11,7 @@
  */
 
 export interface Env {
+	FABMIN: KVNamespace;
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
 	// MY_KV_NAMESPACE: KVNamespace;
 	//
@@ -28,6 +31,12 @@ export default {
 		env: Env,
 		ctx: ExecutionContext
 	): Promise<Response> {
-		return new Response("Hello World");
+		// const browser = await puppeteer.launch();
+		const t = await request.text();
+		console.log('test:', t);
+		// console.log('json:', await request.json());
+		// console.log(await env.FABMIN.list());
+		// console.log();
+		return new Response('Hello world! ' + t);
 	},
 };
