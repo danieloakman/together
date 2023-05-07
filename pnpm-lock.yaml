@@ -22,6 +22,9 @@ dependencies:
   ionicons:
     specifier: ^7.1.0
     version: 7.1.0
+  pocketbase:
+    specifier: ^0.14.4
+    version: 0.14.4
 
 devDependencies:
   '@capacitor/cli':
@@ -2053,6 +2056,10 @@ packages:
       base64-js: 1.5.1
       xmlbuilder: 15.1.1
     dev: true
+
+  /pocketbase@0.14.4:
+    resolution: {integrity: sha512-FZJmZ7+tRJ6ShK9h8nZJNSPVfDIR1gukqcAjrzc7IS2zgK4PdBv7wwIJtCRdYYBxHMNAvU1uFkpQ0sWE094wuw==}
+    dev: false
 
   /postcss@8.4.22:
     resolution: {integrity: sha512-XseknLAfRHzVWjCEtdviapiBtfLdgyzExD50Rg2ePaucEesyh8Wv4VPdW0nbyDa1ydbrAxV19jvMT4+LFmcNUA==}
