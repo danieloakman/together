@@ -1,5 +1,4 @@
 import { pb, fileUrl } from './pocketbase';
-import { env } from '../utils'
 import type { PBBaseModel, CollectionRecord } from './pocketbase';
 import { writable, derived } from 'svelte/store';
 

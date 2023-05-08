@@ -1,8 +1,8 @@
 import PocketBase from 'pocketbase';
 import type { BaseModel } from 'pocketbase';
-import env from '$utils/env';
+import { PUBLIC_POCKETBASE_URL } from '$env/static/public';
 
-export const pb = new PocketBase(env.POCKETBASE_URL);
+export const pb = new PocketBase(PUBLIC_POCKETBASE_URL);
 export default pb;
 
 export type PBBaseModel = Pick<BaseModel, 'id' | 'created' | 'updated'>;
@@ -13,5 +13,5 @@ export interface CollectionRecord {
 }
 
 export function fileUrl(collectionId: string, id: string, filename: string) {
-  return `${env.POCKETBASE_URL}/api/files/${collectionId}/${id}/${filename}`;
+  return `${PUBLIC_POCKETBASE_URL}/api/files/${collectionId}/${id}/${filename}`;
 }
