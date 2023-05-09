@@ -4,11 +4,11 @@ import { CapacitorConfig } from '@capacitor/cli';
 // /** If true then live reloading is turned on. */
 // const LIVE_RELOAD = process.argv.includes('-lr') || process.argv.includes('--live-reloading');
 
-const server: CapacitorConfig['server'] = { 
-  url: 'http://10.0.2.2:5173',
-  cleartext: true,
-};
-// const server: CapacitorConfig['server'] = undefined;
+// const server: CapacitorConfig['server'] = { 
+//   url: 'http://10.0.2.2:5173',
+//   cleartext: true,
+// };
+const server: CapacitorConfig['server'] = undefined;
 
 const config: CapacitorConfig = {
   appId: 'com.fabmin.app',
