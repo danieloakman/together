@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { login } from '$lib';
 	import { ProgressRadial } from '@skeletonlabs/skeleton';
-	import Input from './Input.svelte';
 	let username = '';
 	let password = '';
 	let loading = false;
@@ -23,8 +22,8 @@
 	}
 </script>
 
-<div class="card p-4 m-4 flex align-middle">
-	<form on:submit|preventDefault>
+<div class="card p-4 m-4 flex flex-col gap-2">
+	<form class="flex flex-col gap-4" on:submit|preventDefault>
 		<label class="label">
 			<span>Username or Email</span>
 			<input bind:value={username} disabled={loading} class="input" type="text" />
@@ -34,9 +33,8 @@
 			<span>Password</span>
 			<input bind:value={password} disabled={loading} class="input" type="password" />
 		</label>
-		<br />
 
-		<ion-text color="danger">{error}</ion-text>
+		<span color="danger">{error}</span>
 
 		<button
 			disabled={loading}
