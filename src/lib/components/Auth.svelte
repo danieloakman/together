@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { login } from '$lib';
+	import { ProgressRadial } from '@skeletonlabs/skeleton';
 	import Input from './Input.svelte';
 	let username = '';
 	let password = '';
@@ -22,54 +23,32 @@
 	}
 </script>
 
-<ion-card>
-	<!-- <ion-card-header>
-    <ion-card-title>Log in</ion-card-title>
-  </ion-card-header> -->
+<div class="card p-4 m-4 flex justify-center align-center">
+	<form on:submit|preventDefault>
+		<label class="label">
+			<span>Username or Email</span>
+			<input bind:value={username} disabled={loading} class="input" type="text" />
+		</label>
 
-	<ion-card-content>
-		<form on:submit|preventDefault>
-			<Input
-				label="Username or Email"
-				labelPlacement="floating"
-				bind:value={username}
-				type="text"
-				disabled={loading}
-			/>
-			<Input
-				label="Password"
-				labelPlacement="floating"
-				bind:value={password}
-				type="password"
-				disabled={loading}
-			/>
-			<br />
+		<label class="label">
+			<span>Password</span>
+			<input bind:value={password} disabled={loading} class="input" type="password" />
+		</label>
+		<br />
 
-			<ion-text color="danger">{error}</ion-text>
+		<ion-text color="danger">{error}</ion-text>
 
-			<ion-button
-				disabled={loading}
-				on:keydown={submit}
-				on:click={submit}
-				type="submit"
-				expand="block"
-				style="justify-content: center;"
-			>
-				Log in
-				{#if loading}
-					<ion-spinner name="crescent" />
-				{/if}
-			</ion-button>
-		</form>
-
-		<!-- <ion-button on:click={() => loginWithProvider('google')}>Log in with Google</ion-button> -->
-	</ion-card-content>
-</ion-card>
-
-<style>
-	ion-card {
-		margin: auto;
-		margin-left: 8px;
-		margin-right: 8px;
-	}
-</style>
+		<button
+			disabled={loading}
+			on:keydown={submit}
+			on:click={submit}
+			type="submit"
+			style="justify-content: center;"
+		>
+			Log in
+			{#if loading}
+				<ProgressRadial />
+			{/if}
+		</button>
+	</form>
+</div>

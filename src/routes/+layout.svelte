@@ -1,6 +1,7 @@
 <script lang="ts">
+	import '../app.postcss';
 	// The ordering of these imports is critical to your app working properly
-	import '@skeletonlabs/skeleton/themes/theme-rocket.css';
+	import '@skeletonlabs/skeleton/themes/theme-sahara.css';
 	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
 	import '@skeletonlabs/skeleton/styles/skeleton.css';
 	// Most of your app wide CSS should be put in this file
@@ -8,27 +9,147 @@
 
 	import { currentUser } from '$services';
 	import Auth from '$components/Auth.svelte';
-	import NavMenu from '$components/NavMenu.svelte';
+	import {
+		AppShell,
+		AppBar,
+		TabGroup,
+		Tab,
+		Toast,
+		drawerStore,
+		Drawer
+	} from '@skeletonlabs/skeleton';
+	import { page } from '$app/stores';
+	import { derived, writable } from 'svelte/store';
+	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
+	import {
+		ChevronLeftIcon,
+		GroupsIcon,
+		HomeIcon,
+		MapIcon,
+		MenuIcon,
+		MenuOpenIcon,
+		ReceiptLongIcon,
+		RefreshIcon,
+		RocketIcon
+	} from '$lib';
 
+	const isDrawerOpen = derived(drawerStore, ($drawer) => $drawer.open ?? false);
+	const tabSet = writable('/');
+	tabSet.subscribe((value) => {
+		if (browser) goto(value);
+	});
+
+	const routes = derived(page, ($page) => $page.route.id?.split('/').filter(Boolean) ?? []);
+
+	function goBack(routes: string[]) {
+		const current = routes.pop();
+		if (!current) return;
+		goto('/' + routes.join('/'));
+	}
 </script>
 
-<ion-app>
-	{#if $currentUser}
-		<NavMenu><slot/></NavMenu>
-	{:else}
-		<Auth />
+<Auth>
+	<AppShell>
+		<svelte:fragment slot="header">
+			<AppBar>
+				<svelte:fragment slot="lead">
+					<button
+						disabled={$routes.length <= 1}
+						class="btn-icon btn-sm variant-filled-primary my-0 py-0"
+						on:click={() => goBack($routes)}
+					>
+						<ChevronLeftIcon />
+					</button>
+				</svelte:fragment>
+
+				{$page.route.id}
+
+				<svelte:fragment slot="trail">
+					<button
+						class="btn-icon variant-filled-primary"
+						on:click={() => ($isDrawerOpen ? drawerStore.close() : drawerStore.open())}
+					>
+						{#if $isDrawerOpen}
+							<MenuOpenIcon />
+						{:else}
+							<MenuIcon />
+						{/if}
+					</button>
+				</svelte:fragment>
+			</AppBar>
+		</svelte:fragment>
+
+		<svelte:fragment slot="footer">
+			<TabGroup
+				justify="justify-center"
+				active="variant-filled-primary"
+				hover="hover:variant-soft-primary"
+				flex="flex-1 lg:flex-none"
+				rounded=""
+				border=""
+				class="bg-surface-100-800-token w-full"
+			>
+				<Tab bind:group={$tabSet} name="Home" value={'/'}>
+					<svelte:fragment slot="lead"><HomeIcon /></svelte:fragment>
+				</Tab>
+
+				<Tab bind:group={$tabSet} name="Contracts" value={'/contracts'}>
+					<svelte:fragment slot="lead"><ReceiptLongIcon /></svelte:fragment>
+				</Tab>
+
+				<Tab bind:group={$tabSet} name="Navigation" value={'/navigation'}>
+					<svelte:fragment slot="lead"><MapIcon /></svelte:fragment>
+				</Tab>
+
+				<Tab bind:group={$tabSet} name="fleet" value={'/fleet'}>
+					<svelte:fragment slot="lead"><RocketIcon /></svelte:fragment>
+				</Tab>
+
+				<Tab bind:group={$tabSet} name="factions" value={'/factions'}>
+					<svelte:fragment slot="lead"><GroupsIcon /></svelte:fragment>
+				</Tab>
+			</TabGroup>
+		</svelte:fragment>
+
+		<slot />
+	</AppShell>
+</Auth>
+
+<Drawer
+	position="right"
+	width="w-[280px] md:w-[480px]"
+	padding="p-4"
+	rounded="rounded-xl"
+	bgBackdrop="bg-gradient-to-tr from-blue-500/50 via-purple-500/50 to-red-500/50"
+>
+	{#if $isDrawerOpen}
+		<div class="m-4 flex justify-between">
+			<button class="btn-icon variant-filled-primary">
+				<RefreshIcon />
+			</button>
+		</div>
+
+		<!-- {#await $myAgent then myAgent}
+			<div class="mx-4">
+				<JsonView json={myAgent} />
+			</div>
+		{/await} -->
+
+		<!-- {#await sleep(1000) then _}
+			{#await $myAgent then myAgent}
+				<div class="mx-4">
+					<JsonView json={myAgent} />
+				</div>
+			{/await}
+		{/await} -->
+
+		<!-- {#await $headquarters then headquarters}
+			<div class="m-4">
+				<JsonView json={headquarters} depth={1}/>
+			</div>
+		{/await} -->
 	{/if}
-</ion-app>
+</Drawer>
 
-<!-- <style global>
-	ion-tab {
-		/* This padding is for the ion-toolbar. */
-		padding-top: 56px;
-	}
-
-	.tab-padding-top {
-		/* This padding is for the ion-toolbar. */
-		/* padding-top: 56px; */
-		padding-top: 56px;
-	}
-</style> -->
+<Toast />

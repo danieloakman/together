@@ -1,3 +1,4 @@
+/*Write your global styles here, in PostCSS syntax */
 /*place global styles here */
 html,
 body {
@@ -5,7 +6,17 @@ body {
 }
 
 @font-face {
-	font-family: 'Quicksand';
-	src: url('/fonts/Quicksand.ttf');
+	font-family: 'Inter';
+	src: url('/fonts/Inter.ttf');
 	/* font-display: swap; */
+}
+
+:root {
+	--theme-rounded-base: 20px;
+	--theme-rounded-container: 4px;
+}
+
+:root {
+	--theme-font-family-base: 'MyCustomFont', sans-serif;
+	--theme-font-family-heading: 'MyCustomFont', sans-serif;
 }

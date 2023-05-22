@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	export let value = '';
 	export let type:
 		| 'number'
@@ -31,4 +31,4 @@
 	}}
 >
 	<slot />
-</ion-input>
+</ion-input> -->

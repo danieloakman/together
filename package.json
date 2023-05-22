@@ -43,7 +43,9 @@
 		"typescript": "^5.0.4",
 		"unplugin-icons": "^0.16.1",
 		"vite": "^4.3.8",
-		"vitest": "^0.25.8"
+		"vitest": "^0.25.8",
+		"postcss-load-config": "^4.0.1",
+		"svelte-preprocess": "^5.0.3"
 	},
 	"type": "module",
 	"dependencies": {
