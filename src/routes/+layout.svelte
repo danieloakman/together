@@ -1,5 +1,4 @@
 <script lang="ts">
-	import '../app.postcss';
 	// The ordering of these imports is critical to your app working properly
 	import '@skeletonlabs/skeleton/themes/theme-sahara.css';
 	// If you have source.organizeImports set to true in VSCode, then it will auto change this ordering
@@ -54,6 +53,11 @@
 		const current = routes.pop();
 		if (!current) return;
 		goto('/' + routes.join('/'));
+	}
+
+	function swapMode() {
+		const el = document.getElementsByTagName('html')[0];
+		el.className = el.className === 'dark' ? '' : 'dark';
 	}
 </script>
 
@@ -138,6 +142,9 @@
 			<button class="btn-icon variant-filled-primary">
 				<RefreshIcon />
 			</button>
+
+			<button class="btn varient-filled-primary" on:click={swapMode}>Swap</button>
+
 			<button class="btn-icon variant-filled-primary" on:click={logout}>
 				<LogoutIcon />
 			</button>
