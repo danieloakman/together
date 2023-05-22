@@ -45,7 +45,7 @@
 		>
 			Log in
 			{#if loading}
-				<ProgressRadial />
+				<ProgressRadial width="w-6"/>
 			{/if}
 		</button>
 	</form>

@@ -25,14 +25,16 @@
 		GroupsIcon,
 		HomeIcon,
 		LogoutIcon,
-		MapIcon,
 		MenuIcon,
 		MenuOpenIcon,
-		ReceiptLongIcon,
 		RefreshIcon,
-		RocketIcon,
 		logout,
-		currentUser
+		currentUser,
+		CalendarIcon,
+		CheckListIcon,
+
+		MenuBookIcon
+
 	} from '$lib';
 
 	const isDrawerOpen = derived(drawerStore, ($drawer) => $drawer.open ?? false);
@@ -42,6 +44,11 @@
 	});
 
 	const routes = derived(page, ($page) => $page.route.id?.split('/').filter(Boolean) ?? []);
+
+	function canGoBack(routes: string[]) {
+		if (['about', 'settings'].includes(routes[0])) return true;
+		if (routes.length > 1) return true;
+	}
 
 	function goBack(routes: string[]) {
 		const current = routes.pop();
@@ -56,7 +63,7 @@
 			<AppBar>
 				<svelte:fragment slot="lead">
 					<button
-						disabled={$routes.length <= 1}
+						disabled={!canGoBack($routes)}
 						class="btn-icon btn-sm variant-filled-primary my-0 py-0"
 						on:click={() => goBack($routes)}
 					>
@@ -93,25 +100,25 @@
 				border=""
 				class="bg-surface-100-800-token w-full"
 			>
-				<Tab bind:group={$tabSet} name="Home" value={'/'}>
+				<Tab bind:group={$tabSet} name="home" value={'/'}>
 					<svelte:fragment slot="lead"><HomeIcon /></svelte:fragment>
 				</Tab>
 
-				<Tab bind:group={$tabSet} name="Contracts" value={'/contracts'}>
-					<svelte:fragment slot="lead"><ReceiptLongIcon /></svelte:fragment>
+				<Tab bind:group={$tabSet} name="calendar" value={'/calendar'}>
+					<svelte:fragment slot="lead"><CalendarIcon /></svelte:fragment>
 				</Tab>
 
-				<Tab bind:group={$tabSet} name="Navigation" value={'/navigation'}>
-					<svelte:fragment slot="lead"><MapIcon /></svelte:fragment>
+				<Tab bind:group={$tabSet} name="lists" value={'/lists'}>
+					<svelte:fragment slot="lead"><CheckListIcon /></svelte:fragment>
 				</Tab>
 
-				<Tab bind:group={$tabSet} name="fleet" value={'/fleet'}>
-					<svelte:fragment slot="lead"><RocketIcon /></svelte:fragment>
+				<Tab bind:group={$tabSet} name="recipes" value={'/recipes'}>
+					<svelte:fragment slot="lead"><MenuBookIcon /></svelte:fragment>
 				</Tab>
 
-				<Tab bind:group={$tabSet} name="factions" value={'/factions'}>
+				<!-- <Tab bind:group={$tabSet} name="settings" value={'/settings'}>
 					<svelte:fragment slot="lead"><GroupsIcon /></svelte:fragment>
-				</Tab>
+				</Tab> -->
 			</TabGroup>
 		{/if}
 	</svelte:fragment>
@@ -124,7 +131,7 @@
 	width="w-[280px] md:w-[480px]"
 	padding="p-4"
 	rounded="rounded-xl"
-	bgBackdrop="bg-gradient-to-tr from-blue-500/50 via-purple-500/50 to-red-500/50"
+	bgBackdrop="bg-gradient-to-tr from-yellow-500/50 via-purple-500/50 to-red-500/50"
 >
 	{#if $isDrawerOpen}
 		<div class="m-4 flex justify-between">

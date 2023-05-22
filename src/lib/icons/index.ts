@@ -13,8 +13,6 @@ import MoreVertIcon from 'virtual:icons/material-symbols/more-vert';
 import PersonIcon from 'virtual:icons/material-symbols/person';
 import HomeIcon from 'virtual:icons/material-symbols/home';
 import ReceiptLongIcon from 'virtual:icons/material-symbols/receipt-long';
-import RocketIcon from 'virtual:icons/material-symbols/rocket';
-import RocketLaunchIcon from 'virtual:icons/material-symbols/rocket-launch';
 import SettingsIcon from 'virtual:icons/material-symbols/settings';
 import MapIcon from 'virtual:icons/material-symbols/map';
 import MenuIcon from 'virtual:icons/material-symbols/menu';
@@ -22,6 +20,9 @@ import MenuOpenIcon from 'virtual:icons/material-symbols/menu-open';
 import RefreshIcon from 'virtual:icons/material-symbols/refresh';
 import GroupsIcon from 'virtual:icons/material-symbols/groups';
 import LogoutIcon from 'virtual:icons/material-symbols/logout';
+import CalendarIcon from 'virtual:icons/material-symbols/calendar-month';
+import CheckListIcon from 'virtual:icons/material-symbols/checklist';
+import MenuBookIcon from 'virtual:icons/material-symbols/menu-book';
 export {
 	CheckSmallIcon,
 	ChevronLeftIcon,
@@ -40,6 +41,9 @@ export {
 	MenuOpenIcon,
 	RefreshIcon,
 	GroupsIcon,
-	LogoutIcon
+	LogoutIcon,
+	CalendarIcon,
+	CheckListIcon,
+	MenuBookIcon,
 };
 // export * as MaterialIcons from 'virtual:icons/material-symbols';
