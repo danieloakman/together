@@ -21,6 +21,7 @@ import MenuIcon from 'virtual:icons/material-symbols/menu';
 import MenuOpenIcon from 'virtual:icons/material-symbols/menu-open';
 import RefreshIcon from 'virtual:icons/material-symbols/refresh';
 import GroupsIcon from 'virtual:icons/material-symbols/groups';
+import LogoutIcon from 'virtual:icons/material-symbols/logout';
 export {
 	CheckSmallIcon,
 	ChevronLeftIcon,
@@ -38,6 +39,7 @@ export {
 	MenuIcon,
 	MenuOpenIcon,
 	RefreshIcon,
-	GroupsIcon
+	GroupsIcon,
+	LogoutIcon
 };
 // export * as MaterialIcons from 'virtual:icons/material-symbols';

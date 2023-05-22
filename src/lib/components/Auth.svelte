@@ -23,7 +23,7 @@
 	}
 </script>
 
-<div class="card p-4 m-4 flex justify-center align-center">
+<div class="card p-4 m-4 flex align-middle">
 	<form on:submit|preventDefault>
 		<label class="label">
 			<span>Username or Email</span>
@@ -43,7 +43,7 @@
 			on:keydown={submit}
 			on:click={submit}
 			type="submit"
-			style="justify-content: center;"
+			class="btn variant-filled-primary w-full"
 		>
 			Log in
 			{#if loading}

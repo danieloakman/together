@@ -26,11 +26,7 @@ export interface Env {
 }
 
 export default {
-	async fetch(
-		request: Request,
-		env: Env,
-		ctx: ExecutionContext
-	): Promise<Response> {
+	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		// const browser = await puppeteer.launch();
 		const t = await request.text();
 		console.log('test:', t);
@@ -38,5 +34,5 @@ export default {
 		// console.log(await env.FABMIN.list());
 		// console.log();
 		return new Response('Hello world! ' + t);
-	},
+	}
 };

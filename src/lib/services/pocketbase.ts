@@ -8,10 +8,10 @@ export default pb;
 export type PBBaseModel = Pick<BaseModel, 'id' | 'created' | 'updated'>;
 
 export interface CollectionRecord {
-  collectionId: string;
-  collectionName: string;
+	collectionId: string;
+	collectionName: string;
 }
 
 export function fileUrl(collectionId: string, id: string, filename: string) {
-  return `${PUBLIC_POCKETBASE_URL}/api/files/${collectionId}/${id}/${filename}`;
+	return `${PUBLIC_POCKETBASE_URL}/api/files/${collectionId}/${id}/${filename}`;
 }

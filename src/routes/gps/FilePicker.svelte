@@ -10,7 +10,7 @@
 			console.log(r);
 			const r2 = await fs.readFile({ path: dir, directory: Directory.Cache });
 			console.log(r2);
-      // await fs.requestPermissions();
+			// await fs.requestPermissions();
 		})();
 	}
 </script>

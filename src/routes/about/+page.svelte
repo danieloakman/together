@@ -1,5 +1,5 @@
 <!-- <ion-tab tab="about"> -->
-	<!-- <ion-card class="tab-padding-top">
+<!-- <ion-card class="tab-padding-top">
 		<ion-card-header>
 			<ion-card-subtitle>Great success!!</ion-card-subtitle>
 			<ion-card-title>Welcome to your app!</ion-card-title>
@@ -46,6 +46,4 @@
 		</ion-item>
 	</ion-card> -->
 <!-- </ion-tab> -->
-<span>
-	About works!
-</span>
+<span> About works! </span>

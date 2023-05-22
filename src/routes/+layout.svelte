@@ -7,8 +7,6 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 
-	import { currentUser } from '$services';
-	import Auth from '$components/Auth.svelte';
 	import {
 		AppShell,
 		AppBar,
@@ -26,12 +24,15 @@
 		ChevronLeftIcon,
 		GroupsIcon,
 		HomeIcon,
+		LogoutIcon,
 		MapIcon,
 		MenuIcon,
 		MenuOpenIcon,
 		ReceiptLongIcon,
 		RefreshIcon,
-		RocketIcon
+		RocketIcon,
+		logout,
+		currentUser
 	} from '$lib';
 
 	const isDrawerOpen = derived(drawerStore, ($drawer) => $drawer.open ?? false);
@@ -49,9 +50,9 @@
 	}
 </script>
 
-<Auth>
-	<AppShell>
-		<svelte:fragment slot="header">
+<AppShell>
+	<svelte:fragment slot="header">
+		{#if $currentUser != null}
 			<AppBar>
 				<svelte:fragment slot="lead">
 					<button
@@ -78,9 +79,11 @@
 					</button>
 				</svelte:fragment>
 			</AppBar>
-		</svelte:fragment>
+		{/if}
+	</svelte:fragment>
 
-		<svelte:fragment slot="footer">
+	<svelte:fragment slot="footer">
+		{#if $currentUser != null}
 			<TabGroup
 				justify="justify-center"
 				active="variant-filled-primary"
@@ -110,11 +113,11 @@
 					<svelte:fragment slot="lead"><GroupsIcon /></svelte:fragment>
 				</Tab>
 			</TabGroup>
-		</svelte:fragment>
+		{/if}
+	</svelte:fragment>
 
-		<slot />
-	</AppShell>
-</Auth>
+	<slot />
+</AppShell>
 
 <Drawer
 	position="right"
@@ -127,6 +130,9 @@
 		<div class="m-4 flex justify-between">
 			<button class="btn-icon variant-filled-primary">
 				<RefreshIcon />
+			</button>
+			<button class="btn-icon variant-filled-primary" on:click={logout}>
+				<LogoutIcon />
 			</button>
 		</div>
 

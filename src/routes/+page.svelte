@@ -1,3 +1,8 @@
+<script>
+	import Auth from '$components/Auth.svelte';
+	import { currentUser } from '$services';
+</script>
+
 <!-- <ion-tab tab="">
 	<ion-card>
 		<ion-item>
@@ -12,5 +17,9 @@
 	</ion-card>
 </ion-tab> -->
 
-<a href="about" >About</a>
-<a href="settings">Settings</a>
+{#if $currentUser == null}
+	<Auth />
+{:else}
+	<a href="about">About</a>
+	<a href="settings">Settings</a>
+{/if}

@@ -4,7 +4,6 @@
 	}
 	type Segment = 'Shopping' | 'Todos';
 	let currentSegment: Segment = 'Shopping';
-
 </script>
 
 <!-- <ion-tab tab="lists">
@@ -23,6 +22,4 @@
 		<ion-content class="ion-padding">Todos</ion-content>
 	{/if}
 </ion-tab> -->
-<span>
-	Lists works!
-</span>
+<span> Lists works! </span>

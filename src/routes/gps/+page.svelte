@@ -8,6 +8,4 @@
 	</ion-card>
 </ion-tab> -->
 
-<span>
-	GPS works!
-</span>
+<span> GPS works! </span>
