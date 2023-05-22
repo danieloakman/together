@@ -7,7 +7,7 @@
 
 </script>
 
-<ion-tab tab="lists">
+<!-- <ion-tab tab="lists">
 	<ion-segment value="Shopping" on:ionChange={segmentChange}>
 		<ion-segment-button value="Shopping">
 			<ion-label>Shopping</ion-label>
@@ -22,4 +22,7 @@
 	{#if currentSegment === 'Todos'}
 		<ion-content class="ion-padding">Todos</ion-content>
 	{/if}
-</ion-tab>
+</ion-tab> -->
+<span>
+	Lists works!
+</span>

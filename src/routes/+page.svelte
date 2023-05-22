@@ -1,13 +1,16 @@
-<ion-tab tab=""> <!-- tab="home" -->
+<!-- <ion-tab tab="">
 	<ion-card>
 		<ion-item>
 			<ion-label>About</ion-label>
-			<ion-button href="about" fill="outline" slot="end">View</ion-button>
+			<a href="about" >View</a>
 		</ion-item>
 
 		<ion-item>
 			<ion-label>Settings</ion-label>
-			<ion-button href="settings" fill="outline" slot="end">View</ion-button>
+			<a href="settings">View</a>
 		</ion-item>
 	</ion-card>
-</ion-tab>
+</ion-tab> -->
+
+<a href="about" >About</a>
+<a href="settings">Settings</a>

@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import FilePicker from './FilePicker.svelte';
 </script>
 
@@ -6,4 +6,8 @@
 	<ion-card>
 		<FilePicker />
 	</ion-card>
-</ion-tab>
+</ion-tab> -->
+
+<span>
+	GPS works!
+</span>

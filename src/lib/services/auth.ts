@@ -17,7 +17,7 @@ export const currentUserAvatar = derived(currentUser, $u => {
   if (!$u?.avatar) return 'default-avatar.png';
   return fileUrl($u.collectionId, $u.id, $u.avatar);
 });
-
+    
 currentUser.subscribe(user => {
   console.log('currentUser.subscribe', user);
 });

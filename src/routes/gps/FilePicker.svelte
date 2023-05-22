@@ -16,7 +16,7 @@
 </script>
 
 <!-- <input type="file" webkitdirectory directory multiple on:change={onChange}/> -->
-<ion-item>
+<!-- <ion-item>
 	<ion-input
 		label="Pick a directory"
 		label-placement="floating"
@@ -26,4 +26,4 @@
 			if (typeof e.detail.value === 'string') dir = e.detail.value;
 		}}
 	/>
-</ion-item>
+</ion-item> -->

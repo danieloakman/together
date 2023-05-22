@@ -11,11 +11,13 @@ import { CapacitorConfig } from '@capacitor/cli';
 const server: CapacitorConfig['server'] = undefined;
 
 const config: CapacitorConfig = {
-  appId: 'com.fabmin.app',
-  appName: 'Fabmin',
+  appId: 'com.danoaky.together',
+  appName: 'Together',
   webDir: 'build',
   bundledWebRuntime: false,
-  server
+  server: {
+		androidScheme: 'https'
+	}
 };
 
 if (server) console.log(`🔴🔥 Running capactitor with live-reload at "${server?.url}"`);

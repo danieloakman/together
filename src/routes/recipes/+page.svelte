@@ -1,3 +1,7 @@
-<ion-tab tab="recipes">
+<!-- <ion-tab tab="recipes">
 	<ion-card><ion-text>Hello</ion-text></ion-card>
-</ion-tab>
+</ion-tab> -->
+
+<span>
+	Recipes works!
+</span>
