@@ -14,7 +14,10 @@
     "format": "npx prettier --plugin-search-dir . --write .",
     "cap:sync": "npx cap sync",
     "cap:open:android": "npx cap open android",
-    "cap:open:ios": "npx cap open ios"
+    "cap:open:ios": "npx cap open ios",
+    "env:pull": "npx dotenv-vault pull",
+    "env:push": "npx dotenv-vault push",
+    "env:push:example": "npx dotenv-vault push example"
   },
   "devDependencies": {
     "@capacitor/cli": "^5.0.4",
