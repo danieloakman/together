@@ -9,7 +9,7 @@ This app is about organizing a family. It's a Android and IOS app made with Ioni
 - Install node >=18
 - Install pnpm
 - `pnpm i`
-- Create 
+- Optionally login and pull your dotenv-vault project, or fill out the .env file manually (see .env.example)
 - `pnpm run dev`
 
 ## Build
