@@ -60,6 +60,7 @@
     "iteragain": "^3.16.2",
     "lodash-es": "^4.17.21",
     "pocketbase": "^0.14.4",
-    "svelte-asyncable": "^2.1.1"
+    "svelte-asyncable": "^2.1.1",
+    "svelte-legos": "^0.2.1"
   }
 }
