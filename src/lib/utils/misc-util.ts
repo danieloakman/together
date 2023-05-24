@@ -1,3 +1,4 @@
+import type { Nullish } from '$types';
 import { toastStore, type ToastSettings } from '@skeletonlabs/skeleton';
 
 export function sleep(ms: number): Promise<number> {
@@ -78,4 +79,12 @@ export function handleError<TErrorResult>(
 			});
 		return options.result;
 	};
+}
+
+export function safeJsonParse<T = unknown>(text?: Nullish<string>): T | null {
+	try {
+		return JSON.parse(text ?? '');
+	} catch (err) {
+		return null;
+	}
 }

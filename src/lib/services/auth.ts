@@ -1,3 +1,4 @@
+import { goto } from '$app/navigation';
 import { pb, fileUrl } from './pocketbase';
 import type { PBBaseModel, CollectionRecord } from './pocketbase';
 import { writable, derived } from 'svelte/store';
@@ -29,6 +30,7 @@ pb.authStore.onChange((auth) => {
 
 export function logout() {
 	pb.authStore.clear();
+	goto('/');
 }
 
 export async function login(usernameOrEmail: string, password: string) {

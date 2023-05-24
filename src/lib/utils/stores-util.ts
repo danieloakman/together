@@ -5,12 +5,12 @@ import type {
 	Identifiable,
 	Reloadable,
 	SafeAwaitDepth1,
-	StoreMethods,
 	Stores,
 	StoresValues
 } from '$types';
 import { readFile, writeFile } from '$services';
 import { noop } from 'svelte/internal';
+import { preferences } from '$services/preferences';
 export { Asyncable };
 
 /** A Readable that always returns undefined. */
@@ -213,5 +213,17 @@ export function fileStore<T>(path: string, initialValue: T, options: { readonly?
 			: async (newValue: T) => {
 					await writeFile(path, newValue);
 			  }
+	);
+}
+
+export function preferenceStore<T>(key: string, initialValue: T) {
+	return asyncable(
+		async () => {
+			const value = await preferences.get<T>(key);
+			return value ?? initialValue;
+		},
+		async (newValue: T) => {
+			await preferences.set(key, newValue);
+		}
 	);
 }

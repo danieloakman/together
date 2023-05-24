@@ -1,6 +1,8 @@
-import { writable } from "svelte/store";
+import { preferenceStore } from "$utils";
+import { get } from "svelte/store";
 
-const { subscribe, set } = writable(true);
+// TODO: 
+const store = preferenceStore('dark', true);
 
 /** '' is for light mode, i.e. turning dark mode off. */
 function swapMode(mode?: 'dark' | '') {
@@ -9,12 +11,13 @@ function swapMode(mode?: 'dark' | '') {
     el.className = mode;
   else 
     el.className = el.className === 'dark' ? '' : 'dark';
-  set(el.className === 'dark');
+  store.set(el.className === 'dark');
 }
+get(store).then(v => swapMode(v ? 'dark' : ''));
 
 export const darkMode = {
   on: () => swapMode('dark'),
   off: () => swapMode(''),
   toggle: () => swapMode(),
-  subscribe
+  subscribe: store.subscribe,
 };

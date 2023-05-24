@@ -7,3 +7,6 @@ project(':capacitor-filesystem').projectDir = new File('../node_modules/.pnpm/@c
 
 include ':capacitor-geolocation'
 project(':capacitor-geolocation').projectDir = new File('../node_modules/.pnpm/@capacitor+geolocation@5.0.2_@capacitor+core@5.0.4/node_modules/@capacitor/geolocation/android')
+
+include ':capacitor-preferences'
+project(':capacitor-preferences').projectDir = new File('../node_modules/.pnpm/@capacitor+preferences@5.0.2_@capacitor+core@5.0.4/node_modules/@capacitor/preferences/android')
