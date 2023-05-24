@@ -142,24 +142,24 @@ export class EntityStore<T extends Identifiable> implements Readable<Promise<T[]
 	}
 
 	// Don't think this method is a good idea. Just not type safe enough:
-	select(
-		id: string
-	): StoreMethods<
-		Promise<T | undefined>,
-		(value: Partial<T> & Identifiable) => void,
-		(fn: (value: T) => Partial<T>) => void
-	> &
-		HasGet<Promise<T | undefined>> {
-		return asyncable(
-			this.source,
-			async ($source) => {
-				return (await $source).find((e) => e.id === id);
-			},
-			(value) => {
-				if (value) this.update(id, () => value);
-			}
-		) as any;
-	}
+	// select(
+	// 	id: string
+	// ): StoreMethods<
+	// 	Promise<T | undefined>,
+	// 	(value: Partial<T> & Identifiable) => void,
+	// 	(fn: (value: T) => Partial<T>) => void
+	// > &
+	// 	HasGet<Promise<T | undefined>> {
+	// 	return asyncable(
+	// 		this.source,
+	// 		async ($source) => {
+	// 			return (await $source).find((e) => e.id === id);
+	// 		},
+	// 		(value) => {
+	// 			if (value) this.update(id, () => value);
+	// 		}
+	// 	) as any;
+	// }
 
 	set(...values: (Partial<T> & Identifiable)[]) {
 		this.source.update((entities) => {
