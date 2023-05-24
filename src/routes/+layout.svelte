@@ -8,168 +8,35 @@
 
 	import {
 		AppShell,
-		AppBar,
-		TabGroup,
-		Tab,
 		Toast,
-		drawerStore,
 		Drawer
 	} from '@skeletonlabs/skeleton';
-	import { page } from '$app/stores';
-	import { derived, writable } from 'svelte/store';
-	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
 	import {
-		ChevronLeftIcon,
-		GroupsIcon,
-		HomeIcon,
 		LogoutIcon,
-		MenuIcon,
-		MenuOpenIcon,
 		RefreshIcon,
 		logout,
-		currentUser,
-		CalendarIcon,
-		CheckListIcon,
+		darkMode,
 
-		MenuBookIcon
+		isDrawerOpen
 
 	} from '$lib';
-
-	const isDrawerOpen = derived(drawerStore, ($drawer) => $drawer.open ?? false);
-	const tabSet = writable('/');
-	tabSet.subscribe((value) => {
-		if (browser) goto(value);
-	});
-
-	const routes = derived(page, ($page) => $page.route.id?.split('/').filter(Boolean) ?? []);
-
-	function canGoBack(routes: string[]) {
-		if (['about', 'settings'].includes(routes[0])) return true;
-		if (routes.length > 1) return true;
-	}
-
-	function goBack(routes: string[]) {
-		const current = routes.pop();
-		if (!current) return;
-		goto('/' + routes.join('/'));
-	}
-
-	function swapMode() {
-		const el = document.getElementsByTagName('html')[0];
-		el.className = el.className === 'dark' ? '' : 'dark';
-	}
+	import AppHeader from '$components/AppHeader.svelte';
+	import AppFooter from '$components/AppFooter.svelte';
+	import AppDrawer from '$components/AppDrawer.svelte';
 </script>
 
 <AppShell>
 	<svelte:fragment slot="header">
-		{#if $currentUser != null}
-			<AppBar>
-				<svelte:fragment slot="lead">
-					<button
-						disabled={!canGoBack($routes)}
-						class="btn-icon btn-sm variant-filled-primary my-0 py-0"
-						on:click={() => goBack($routes)}
-					>
-						<ChevronLeftIcon />
-					</button>
-				</svelte:fragment>
-
-				{$page.route.id}
-
-				<svelte:fragment slot="trail">
-					<button
-						class="btn-icon variant-filled-primary"
-						on:click={() => ($isDrawerOpen ? drawerStore.close() : drawerStore.open())}
-					>
-						{#if $isDrawerOpen}
-							<MenuOpenIcon />
-						{:else}
-							<MenuIcon />
-						{/if}
-					</button>
-				</svelte:fragment>
-			</AppBar>
-		{/if}
+		<AppHeader />
 	</svelte:fragment>
 
 	<svelte:fragment slot="footer">
-		{#if $currentUser != null}
-			<TabGroup
-				justify="justify-center"
-				active="variant-filled-primary"
-				hover="hover:variant-soft-primary"
-				flex="flex-1 lg:flex-none"
-				rounded=""
-				border=""
-				class="bg-surface-100-800-token w-full"
-			>
-				<Tab bind:group={$tabSet} name="home" value={'/'}>
-					<svelte:fragment slot="lead"><HomeIcon /></svelte:fragment>
-				</Tab>
-
-				<Tab bind:group={$tabSet} name="calendar" value={'/calendar'}>
-					<svelte:fragment slot="lead"><CalendarIcon /></svelte:fragment>
-				</Tab>
-
-				<Tab bind:group={$tabSet} name="lists" value={'/lists'}>
-					<svelte:fragment slot="lead"><CheckListIcon /></svelte:fragment>
-				</Tab>
-
-				<Tab bind:group={$tabSet} name="recipes" value={'/recipes'}>
-					<svelte:fragment slot="lead"><MenuBookIcon /></svelte:fragment>
-				</Tab>
-
-				<!-- <Tab bind:group={$tabSet} name="settings" value={'/settings'}>
-					<svelte:fragment slot="lead"><GroupsIcon /></svelte:fragment>
-				</Tab> -->
-			</TabGroup>
-		{/if}
+		<AppFooter />
 	</svelte:fragment>
 
 	<slot />
 </AppShell>
 
-<Drawer
-	position="right"
-	width="w-[280px] md:w-[480px]"
-	padding="p-4"
-	rounded="rounded-xl"
-	bgBackdrop="bg-gradient-to-tr from-yellow-500/50 via-purple-500/50 to-red-500/50"
->
-	{#if $isDrawerOpen}
-		<div class="m-4 flex justify-between">
-			<button class="btn-icon variant-filled-primary">
-				<RefreshIcon />
-			</button>
-
-			<button class="btn varient-filled-primary" on:click={swapMode}>Swap</button>
-
-			<button class="btn-icon variant-filled-primary" on:click={logout}>
-				<LogoutIcon />
-			</button>
-		</div>
-
-		<!-- {#await $myAgent then myAgent}
-			<div class="mx-4">
-				<JsonView json={myAgent} />
-			</div>
-		{/await} -->
-
-		<!-- {#await sleep(1000) then _}
-			{#await $myAgent then myAgent}
-				<div class="mx-4">
-					<JsonView json={myAgent} />
-				</div>
-			{/await}
-		{/await} -->
-
-		<!-- {#await $headquarters then headquarters}
-			<div class="m-4">
-				<JsonView json={headquarters} depth={1}/>
-			</div>
-		{/await} -->
-	{/if}
-</Drawer>
+<AppDrawer />
 
 <Toast />
