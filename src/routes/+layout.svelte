@@ -6,20 +6,7 @@
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
 
-	import {
-		AppShell,
-		Toast,
-		Drawer
-	} from '@skeletonlabs/skeleton';
-	import {
-		LogoutIcon,
-		RefreshIcon,
-		logout,
-		darkMode,
-
-		isDrawerOpen
-
-	} from '$lib';
+	import { AppShell, Toast } from '@skeletonlabs/skeleton';
 	import AppHeader from '$components/AppHeader.svelte';
 	import AppFooter from '$components/AppFooter.svelte';
 	import AppDrawer from '$components/AppDrawer.svelte';
