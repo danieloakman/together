@@ -22,7 +22,8 @@
 	}
 </script>
 
-<div class="card p-4 m-4 absolute top-52">
+<!-- Auth card looks weird in landscape mode. Maybe just lock orientation to portrait only. -->
+<div class="card p-4 m-4 relative -bottom-1/4">
 	<form class="flex flex-col gap-4" on:submit|preventDefault>
 		<label class="label">
 			<span>Username or Email</span>
