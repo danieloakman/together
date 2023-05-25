@@ -7,9 +7,9 @@
 	import '../app.postcss';
 
 	import { AppShell, Toast } from '@skeletonlabs/skeleton';
-	import AppHeader from '$components/AppHeader.svelte';
-	import AppFooter from '$components/AppFooter.svelte';
-	import AppDrawer from '$components/AppDrawer.svelte';
+	import AppHeader from '$components/Header.svelte';
+	import AppFooter from '$components/Footer.svelte';
+	import AppDrawer from '$components/Drawer.svelte';
 </script>
 
 <AppShell>
