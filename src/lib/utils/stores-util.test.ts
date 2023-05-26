@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { counter, reloadable, empty, fileStore, entityStore, asyncable } from './stores-util';
-import { iife, sleep } from './misc';
+import { iife, sleep } from './misc-util';
 import { derived, get, readable, writable } from 'svelte/store';
 import { once } from 'lodash-es';
 
@@ -10,7 +10,7 @@ describe('stores-utils.ts', () => {
 		expect(get(e)).toBe(undefined);
 	});
 
-	it('playing around with readables', async () => {
+	it('playing around with stores', async () => {
 		const c = counter();
 		const r1 = readable(
 			Promise.resolve(0),
@@ -36,6 +36,13 @@ describe('stores-utils.ts', () => {
 			v(1);
 			return () => {};
 		});
+		const w1 = writable<number>(undefined, (set) => {
+			console.log('w1 notifier');
+			set(1);
+		});
+		expect(get(w1)).toBe(1);
+		w1.set(2);
+		expect(get(w1)).toBe(2);
 	});
 
 	// it('asyncDerived', async () => {

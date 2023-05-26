@@ -1,7 +1,6 @@
-import { preferenceStore } from "$utils";
+import { getAsync, getNth, preferenceStore } from "$utils";
 import { get } from "svelte/store";
 
-// TODO: 
 const store = preferenceStore('dark', true);
 
 /** '' is for light mode, i.e. turning dark mode off. */
@@ -11,13 +10,15 @@ function swapMode(mode?: 'dark' | '') {
     el.className = mode;
   else 
     el.className = el.className === 'dark' ? '' : 'dark';
-  store.set(el.className === 'dark');
 }
-get(store).then(v => swapMode(v ? 'dark' : ''));
+
+store.subscribe((dark) => {
+  swapMode(dark ? 'dark' : '');
+});
 
 export const darkMode = {
-  on: () => swapMode('dark'),
-  off: () => swapMode(''),
-  toggle: () => swapMode(),
+  on: () => store.set(true),
+  off: () => store.set(false),
+  toggle: () => store.update(dark => !dark),
   subscribe: store.subscribe,
 };

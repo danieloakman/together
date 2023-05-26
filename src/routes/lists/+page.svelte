@@ -1,25 +1,27 @@
 <script lang="ts">
-	import { Tab, TabGroup } from "@skeletonlabs/skeleton";
+	import { Tab, TabGroup, localStorageStore } from '@skeletonlabs/skeleton';
+	import { preferenceStore } from '$lib';
 
 	// function segmentChange(event: any) {
 	// 	currentSegment = event.detail.value;
 	// }
 	// type Segment = 'Shopping' | 'Todos';
 	// let currentSegment: Segment = 'Shopping';
-	let tabSet = 0;
+	const tab = preferenceStore('lists/tab', 0);
+	// const tab = localStorageStore('lists/tab', 0);
 </script>
 
 <TabGroup justify="justify-center">
-	<Tab bind:group={tabSet} name="tab1" value={0}>(label)</Tab>
-	<Tab bind:group={tabSet} name="tab2" value={1}>(label)</Tab>
-	<Tab bind:group={tabSet} name="tab3" value={2}>(label)</Tab>
+	<Tab bind:group={$tab} name="tab1" value={0}>(label)</Tab>
+	<Tab bind:group={$tab} name="tab2" value={1}>(label)</Tab>
+	<Tab bind:group={$tab} name="tab3" value={2}>(label)</Tab>
 	<!-- Tab Panels --->
 	<svelte:fragment slot="panel">
-		{#if tabSet === 0}
+		{#if $tab === 0}
 			(tab panel 1 contents)
-		{:else if tabSet === 1}
+		{:else if $tab === 1}
 			(tab panel 2 contents)
-		{:else if tabSet === 2}
+		{:else if $tab === 2}
 			(tab panel 3 contents)
 		{/if}
 	</svelte:fragment>

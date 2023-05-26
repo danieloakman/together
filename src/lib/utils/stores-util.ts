@@ -1,7 +1,6 @@
 import { writable, type Readable, derived, type Writable, get } from 'svelte/store';
 import { asyncable as _asyncable, type Asyncable } from 'svelte-asyncable';
 import type {
-	HasGet,
 	Identifiable,
 	Reloadable,
 	SafeAwaitDepth1,
@@ -11,6 +10,7 @@ import type {
 import { readFile, writeFile } from '$services';
 import { noop } from 'svelte/internal';
 import { preferences } from '$services/preferences';
+import { isNil } from 'lodash-es';
 export { Asyncable };
 
 /** A Readable that always returns undefined. */
@@ -124,6 +124,60 @@ export function asyncable<T>(...args: any[]) {
 	};
 }
 
+// export function from<T>(
+// 	getter: () => T | Promise<T>,
+// 	setter?: (
+// 		newValue: SafeAwaitDepth1<T>,
+// 		oldValue?: SafeAwaitDepth1<T>
+// 	) => T | Promise<T> | void | Promise<void>
+// ): Writable<SafeAwaitDepth1<T>>;
+// export function from<T extends Stores, U>(
+// 	stores: T,
+// 	getter: ($values: StoresValues<T>) => U,
+// 	setter?: (
+// 		newValue: SafeAwaitDepth1<U>,
+// 		oldValue?: SafeAwaitDepth1<U>
+// 	) => U | Promise<U> | void | Promise<void>
+// ): Writable<SafeAwaitDepth1<U>>;
+// // export function from<T>(
+// // 	source: Writable<T>,
+// // 	options?: { readonly?: boolean }
+// // ): Writable<SafeAwaitDepth1<T>>;
+// // export function from<T>(source: Readable<T>): Asyncable<SafeAwaitDepth1<T>>;
+// export function from<T>(...args: any[]) {
+// 	if (typeof args[0] === 'function') {
+// 		const [getter, setter] = args;
+// 		// return _asyncable((...values: any[]) => getter(values.length > 1 ? values : values[0]), setter);
+// 		const init = getter();
+		
+// 		// const { subscribe, set, update } = writable(undefined, (set) => {
+			
+
+// 	} else if (
+// 		('subscribe' in args[0] ||
+// 			(Array.isArray(args[0]) && args[0].every((arg) => 'subscribe' in arg))) &&
+// 		typeof args[1] === 'function'
+// 	) {
+// 		const [source, getter, setter] = args;
+// 		// return _asyncable(
+// 		// 	(...values: any[]) => getter(values.length > 1 ? values : values[0]),
+// 		// 	setter,
+// 		// 	Array.isArray(source) ? source : ([source] as any)
+// 		// );
+// 	}
+
+// 	throw new Error('Args not supported');
+// 	// // Handle cases where Readables or Writables and options are passed:
+// 	// const [source, options = {}] = args;
+// 	// return {
+// 	// 	subscribe: source.subscribe,
+// 	// 	get: async () => get(source),
+// 	// 	// Just silently ignore the setter if the source is readonly with using `noop`:
+// 	// 	set: !options.readonly && 'set' in source ? source.set : noop,
+// 	// 	update: !options.readonly && 'update' in source ? source.update : noop
+// 	// };
+// }
+
 export class EntityStore<T extends Identifiable> implements Readable<Promise<T[]>> {
 	// TODO: Could maybe make this class more efficient by using a map<ID, array index>.
 	// Also, there's no internal ID checking against values already in the store.
@@ -216,14 +270,65 @@ export function fileStore<T>(path: string, initialValue: T, options: { readonly?
 	);
 }
 
-export function preferenceStore<T>(key: string, initialValue: T) {
-	return asyncable(
-		async () => {
-			const value = await preferences.get<T>(key);
-			return value ?? initialValue;
+/**
+ * Gets the first value from a readable that matches the predicate.
+ * @param predicate By default, returns the first non-nullish value.
+ */
+export function getAsync<T>(r: Readable<T>, predicate: (value: T) => any = isNil): Promise<T> {
+	return new Promise((resolve) => {
+		let unsub = noop;
+		unsub = r.subscribe((value) => {
+			if (!predicate(value)) {
+				unsub();
+				resolve(value);
+			}
+		});
+	});
+}
+
+/** Returns a writable that calls `getter` only once to set it's value. */
+export function fetchOnce<T>(initialValue: T | undefined, getter: () => Promise<T>): Writable<T> {
+	const store = writable(initialValue);
+	getter().then(store.set);
+	return store;
+}
+
+export function preferenceStore<T>(key: string, initialValue: T): Writable<T> {
+	let doneFetching = false;
+	const { subscribe, update } = fetchOnce(initialValue, async () => {
+		const result = (await preferences.get<T>(key)) ?? initialValue;
+		doneFetching = true;
+		return result;
+	});
+
+	return {
+		subscribe,
+		update: (fn: (value: T) => T) => {
+			update((value) => {
+				const newValue = fn(value)
+				if (doneFetching)
+					preferences.set(key, newValue);
+				return newValue;
+			});
 		},
-		async (newValue: T) => {
-			await preferences.set(key, newValue);
-		}
-	);
+		set: (value: T) => {
+			update(() => {
+				if (doneFetching)
+					preferences.set(key, value);
+				return value;
+			});
+		},
+	}
+}
+
+export function getNth<T>(n: number, store: Readable<T>) {
+	let unsub = noop;
+	return new Promise(resolve => {
+		unsub = store.subscribe((value) => {
+			if (--n === 0) {
+				unsub();
+				resolve(value);
+			}
+		});
+	});
 }
