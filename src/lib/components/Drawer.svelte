@@ -14,7 +14,7 @@
 	width="w-[280px] md:w-[480px]"
 	padding="p-4"
 	rounded="rounded-xl"
-	bgBackdrop="bg-gradient-to-tr from-yellow-500/50 via-purple-500/50 to-red-500/50"
+	bgBackdrop="bg-gradient-to-tr from-primary-500/50 via-tertiary-500/50 to-secondary-500/50"
 >
 	{#if $isDrawerOpen}
 		<div class="m-4 flex justify-between">
