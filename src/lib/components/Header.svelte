@@ -29,7 +29,17 @@
 			</button>
 		</svelte:fragment>
 
-		{$page.route.id}
+
+		<ol class="breadcrumb">
+			{#each $routes as route, i}
+				<li class="crumb">{route}</li>
+				{#if i < $routes.length - 1}
+					<li class="crumb-separator" aria-hidden>/</li>
+				{/if}
+			{/each}
+		</ol>
+				
+		<!-- {$page.route.id} -->
 
 		<svelte:fragment slot="trail">
 			<button

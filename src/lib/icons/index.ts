@@ -23,6 +23,7 @@ import LogoutIcon from 'virtual:icons/material-symbols/logout';
 import CalendarIcon from 'virtual:icons/material-symbols/calendar-month';
 import CheckListIcon from 'virtual:icons/material-symbols/checklist';
 import MenuBookIcon from 'virtual:icons/material-symbols/menu-book';
+import Add from 'virtual:icons/material-symbols/add';
 export {
 	CheckSmallIcon,
 	ChevronLeftIcon,
@@ -45,5 +46,6 @@ export {
 	CalendarIcon,
 	CheckListIcon,
 	MenuBookIcon,
+	Add,
 };
 // export * as MaterialIcons from 'virtual:icons/material-symbols';
