@@ -8,23 +8,23 @@
 	import '../app.postcss';
 
 	import { AppShell, Toast } from '@skeletonlabs/skeleton';
-	import AppHeader from '$components/Header.svelte';
-	import AppFooter from '$components/Footer.svelte';
-	import AppDrawer from '$components/Drawer.svelte';
+	import Header from '$components/Header.svelte';
+	import Footer from '$components/Footer.svelte';
+	import Drawer from '$components/Drawer.svelte';
 </script>
 
 <AppShell>
 	<svelte:fragment slot="header">
-		<AppHeader />
+		<Header />
 	</svelte:fragment>
 
 	<svelte:fragment slot="footer">
-		<AppFooter />
+		<Footer />
 	</svelte:fragment>
 
 	<slot />
 </AppShell>
 
-<AppDrawer />
+<Drawer />
 
 <Toast />
