@@ -1,36 +1,29 @@
 import { goto } from '$app/navigation';
+import { drawerStore } from '@skeletonlabs/skeleton';
 import { pb, fileUrl } from './pocketbase';
-import type { PBBaseModel, CollectionRecord } from './pocketbase';
-import { writable, derived } from 'svelte/store';
+import type { User } from '$types';
+import { writable, derived, type Readable } from 'svelte/store';
 
-export interface User extends PBBaseModel, CollectionRecord {
-	avatar: string;
-	email: string;
-	emailVisibility: boolean;
-	name: string;
-	username: string;
-	verified: boolean;
-}
+/** Internal auth store. */
+const store = writable(pb.authStore.model as User | null);
 
 /** If null then is not auth'd. */
-export const currentUser = writable(pb.authStore.model as User | null);
-export const currentUserAvatar = derived(currentUser, ($u) => {
+export const currentUser: Readable<User | null> = { subscribe: store.subscribe };
+
+export const currentUserAvatar = derived(store, ($u) => {
 	if (!$u?.avatar) return 'default-avatar.png';
 	return fileUrl($u.collectionId, $u.id, $u.avatar);
 });
 
-currentUser.subscribe((user) => {
-	console.log('currentUser.subscribe', user);
-});
-
 pb.authStore.onChange((auth) => {
-	console.log('pb.authStore.onChange', auth);
-	currentUser.set(pb.authStore.model as User | null);
-});
+	store.set(pb.authStore.model as User | null);
+	console.log('authStore:', pb.authStore.model);
+}, true);
 
 export function logout() {
 	pb.authStore.clear();
 	goto('/');
+	drawerStore.close();
 }
 
 export async function login(usernameOrEmail: string, password: string) {

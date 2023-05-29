@@ -46,6 +46,6 @@ export {
 	CalendarIcon,
 	CheckListIcon,
 	MenuBookIcon,
-	Add,
+	Add
 };
 // export * as MaterialIcons from 'virtual:icons/material-symbols';

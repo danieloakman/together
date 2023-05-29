@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { goto } from "$app/navigation";
-	import { page } from "$app/stores";
-	import { ChevronLeftIcon, MenuIcon, MenuOpenIcon, currentUser, isDrawerOpen, routes } from "$lib";
-	import { AppBar, drawerStore } from "@skeletonlabs/skeleton";
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
+	import { ChevronLeftIcon, MenuIcon, MenuOpenIcon, currentUser, isDrawerOpen, routes } from '$lib';
+	import { AppBar, drawerStore } from '@skeletonlabs/skeleton';
 
-  function canGoBack(routes: string[]): boolean {
+	function canGoBack(routes: string[]): boolean {
 		if (['about', 'settings'].includes(routes[0])) return true;
 		if (routes.length > 1) return true;
-    return false;
+		return false;
 	}
 
 	function goBack(routes: string[]) {
@@ -29,7 +29,6 @@
 			</button>
 		</svelte:fragment>
 
-
 		<ol class="breadcrumb">
 			{#each $routes as route, i}
 				<li class="crumb">{route}</li>
@@ -38,7 +37,7 @@
 				{/if}
 			{/each}
 		</ol>
-				
+
 		<!-- {$page.route.id} -->
 
 		<svelte:fragment slot="trail">

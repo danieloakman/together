@@ -1,12 +1,6 @@
 import { writable, type Readable, derived, type Writable, get } from 'svelte/store';
 import { asyncable as _asyncable, type Asyncable } from 'svelte-asyncable';
-import type {
-	Identifiable,
-	Reloadable,
-	SafeAwaitDepth1,
-	Stores,
-	StoresValues
-} from '$types';
+import type { Identifiable, Reloadable, SafeAwaitDepth1, Stores, StoresValues } from '$types';
 import { readFile, writeFile } from '$services';
 import { noop } from 'svelte/internal';
 import { preferences } from '$services/preferences';
@@ -149,9 +143,8 @@ export function asyncable<T>(...args: any[]) {
 // 		const [getter, setter] = args;
 // 		// return _asyncable((...values: any[]) => getter(values.length > 1 ? values : values[0]), setter);
 // 		const init = getter();
-		
+
 // 		// const { subscribe, set, update } = writable(undefined, (set) => {
-			
 
 // 	} else if (
 // 		('subscribe' in args[0] ||
@@ -305,25 +298,23 @@ export function preferenceStore<T>(key: string, initialValue: T): Writable<T> {
 		subscribe,
 		update: (fn: (value: T) => T) => {
 			update((value) => {
-				const newValue = fn(value)
-				if (doneFetching)
-					preferences.set(key, newValue);
+				const newValue = fn(value);
+				if (doneFetching) preferences.set(key, newValue);
 				return newValue;
 			});
 		},
 		set: (value: T) => {
 			update(() => {
-				if (doneFetching)
-					preferences.set(key, value);
+				if (doneFetching) preferences.set(key, value);
 				return value;
 			});
-		},
-	}
+		}
+	};
 }
 
 export function getNth<T>(n: number, store: Readable<T>) {
 	let unsub = noop;
-	return new Promise(resolve => {
+	return new Promise((resolve) => {
 		unsub = store.subscribe((value) => {
 			if (--n === 0) {
 				unsub();
