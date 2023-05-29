@@ -1,6 +1,12 @@
 <script>
-	import { logout, darkMode, isDrawerOpen, RefreshIcon, LogoutIcon } from '$lib';
-	import { Drawer } from '@skeletonlabs/skeleton';
+	import { logout, darkMode, isDrawerOpen, RefreshIcon, LogoutIcon, currentUser, fileUrl } from '$lib';
+	import { Avatar, Drawer } from '@skeletonlabs/skeleton';
+	import { derived } from 'svelte/store';
+
+	const userAvatar = derived(currentUser, $u => {
+		if (!$u?.avatar) return 'default-avatar.png';
+		return fileUrl($u.collectionId, $u.id, $u.avatar);
+	})
 </script>
 
 <Drawer
@@ -17,6 +23,8 @@
 			</button>
 
 			<button class="btn varient-filled-primary" on:click={darkMode.toggle}>Swap</button>
+
+			<Avatar src={$userAvatar}/>
 
 			<button class="btn-icon variant-filled-primary" on:click={logout}>
 				<LogoutIcon />
