@@ -27,7 +27,7 @@ export function logout() {
 }
 
 export async function login(usernameOrEmail: string, password: string) {
-	return pb.collection('users').authWithPassword(usernameOrEmail, password);
+	return pb.collection('users').authWithPassword(usernameOrEmail, password, {});
 }
 
 // export function loginWithProvider(provider: 'google' | 'apple') {

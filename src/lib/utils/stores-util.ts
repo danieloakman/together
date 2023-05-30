@@ -267,11 +267,14 @@ export function fileStore<T>(path: string, initialValue: T, options: { readonly?
  * Gets the first value from a readable that matches the predicate.
  * @param predicate By default, returns the first non-nullish value.
  */
-export function getAsync<T>(r: Readable<T>, predicate: (value: T) => any = isNil): Promise<T> {
+export function getAsync<T>(
+	r: Readable<T>,
+	predicate: (value: T) => any = (v) => !isNil(v)
+): Promise<T> {
 	return new Promise((resolve) => {
 		let unsub = noop;
 		unsub = r.subscribe((value) => {
-			if (!predicate(value)) {
+			if (predicate(value)) {
 				unsub();
 				resolve(value);
 			}

@@ -6,7 +6,10 @@
 		RefreshIcon,
 		LogoutIcon,
 		currentUserAvatar,
-		fileUrl
+		currentUser,
+
+		family
+
 	} from '$lib';
 	import { Avatar, Drawer } from '@skeletonlabs/skeleton';
 	import { derived } from 'svelte/store';
@@ -21,7 +24,7 @@
 >
 	{#if $isDrawerOpen}
 		<div class="m-4 flex justify-between">
-			<button class="btn-icon variant-filled-primary">
+			<button class="btn-icon variant-filled-primary" on:click={family.reload}>
 				<RefreshIcon />
 			</button>
 
@@ -33,6 +36,10 @@
 				<LogoutIcon />
 			</button>
 		</div>
+
+		{#await $family then fam}
+			<span>{fam?.name ?? 'No family'}</span>
+		{/await}
 
 		<!-- {#await $myAgent then myAgent}
 			<div class="mx-4">
