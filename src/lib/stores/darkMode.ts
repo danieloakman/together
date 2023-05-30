@@ -1,5 +1,4 @@
-import { getAsync, getNth, preferenceStore } from '$utils';
-import { get } from 'svelte/store';
+import { preferenceStore } from '$utils';
 
 const store = preferenceStore('dark', true);
 

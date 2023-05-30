@@ -2,5 +2,5 @@
 	"[svelte]": {
 		"editor.defaultFormatter": "svelte.svelte-vscode"
 	},
-	"dotenv.enableAutocloaking": false,
+	"dotenv.enableAutocloaking": false
 }
