@@ -1,6 +1,6 @@
-import type { Readable } from 'svelte/store';
+import type { Readable, Writable } from 'svelte/store';
 
-export interface Reloadable<T> extends Readable<T> {
+export interface Reloadable<T> extends Writable<T> {
 	reload(): void;
 	get(): T;
 }

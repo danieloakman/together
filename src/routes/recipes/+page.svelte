@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Add } from '$icons';
 	import { currentUser, pb } from '$services';
+	import { family } from '$stores';
 	import type { Family } from '$types';
 	import { get } from 'svelte/store';
 	const recipes = [
@@ -14,10 +15,11 @@
 		if (!user) return;
 		// const prevName = user.expands.family?.name;
 		// if (!prevName) return;
-		pb.collection('families').update<Family>(user.family, {
-			name: Math.random().toString(),
-			recipes: [{ id: '' }]
-		});
+		family.set({ name: Math.random().toString() })
+		// pb.collection('families').update<Family>(user.family, {
+		// 	name: Math.random().toString(),
+		// 	recipes: [{ id: '' }]
+		// });
 	}
 
 	// families().then(console.log);
@@ -39,6 +41,8 @@
 	</nav>
 
 	<button class="btn variant-filled-primary" on:click={update}>Update</button>
+	<button class="btn variant-filled-primary" on:click={family.reload}>Reload</button>
+	<span>{$family?.name}</span>
 
 	<a
 		class="btn-icon btn-icon-xl variant-filled-primary absolute bottom-4 right-4"

@@ -35,9 +35,7 @@
 			</button>
 		</div>
 
-		{#await $family then fam}
-			<span>{fam?.name ?? 'No family'}</span>
-		{/await}
+		<span>{$family?.name ?? 'No family'}</span>
 
 		<!-- {#await $myAgent then myAgent}
 			<div class="mx-4">

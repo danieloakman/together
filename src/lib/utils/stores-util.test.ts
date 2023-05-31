@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { counter, reloadable, empty, fileStore, entityStore, asyncable } from './stores-util';
+import { counter, reloadable, empty, entityStore, asyncable } from './stores-util';
 import { iife, sleep } from './misc-util';
 import { derived, get, readable, writable } from 'svelte/store';
 import { once } from 'lodash-es';
