@@ -7,9 +7,7 @@
 		LogoutIcon,
 		currentUserAvatar,
 		currentUser,
-
 		family
-
 	} from '$lib';
 	import { Avatar, Drawer } from '@skeletonlabs/skeleton';
 	import { derived } from 'svelte/store';
