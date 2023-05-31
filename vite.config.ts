@@ -4,9 +4,7 @@ import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
 	plugins: [
-		// @ts-ignore
 		sveltekit(),
-		// @ts-ignore
 		Icons({
 			compiler: 'svelte',
 			autoInstall: true
