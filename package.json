@@ -57,6 +57,7 @@
 		"@capacitor/core": "^5.0.4",
 		"@capacitor/filesystem": "^5.0.2",
 		"@capacitor/geolocation": "^5.0.2",
+		"@capacitor/ios": "^5.0.4",
 		"@capacitor/preferences": "^5.0.2",
 		"@zerodevx/svelte-json-view": "^1.0.5",
 		"iteragain": "^3.17.1",
