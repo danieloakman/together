@@ -21,24 +21,24 @@
 		border=""
 		class="bg-surface-100-800-token w-full"
 	>
-		<Tab bind:group={$tabSet} name="home" value={'/'}>
+		<Tab class="flex justify-center" bind:group={$tabSet} name="home" value={'/'}>
 			<svelte:fragment slot="lead"><HomeIcon /></svelte:fragment>
 		</Tab>
 
-		<Tab bind:group={$tabSet} name="calendar" value={'/calendar'}>
+		<Tab class="flex justify-center" bind:group={$tabSet} name="calendar" value={'/calendar'}>
 			<svelte:fragment slot="lead"><CalendarIcon /></svelte:fragment>
 		</Tab>
 
-		<Tab bind:group={$tabSet} name="lists" value={'/lists'}>
+		<Tab class="flex justify-center" bind:group={$tabSet} name="lists" value={'/lists'}>
 			<svelte:fragment slot="lead"><CheckListIcon /></svelte:fragment>
 		</Tab>
 
-		<Tab bind:group={$tabSet} name="recipes" value={'/recipes'}>
+		<Tab class="flex justify-center" bind:group={$tabSet} name="recipes" value={'/recipes'}>
 			<svelte:fragment slot="lead"><MenuBookIcon /></svelte:fragment>
 		</Tab>
 
-		<!-- <Tab bind:group={$tabSet} name="settings" value={'/settings'}>
-					<svelte:fragment slot="lead"><GroupsIcon /></svelte:fragment>
-				</Tab> -->
+		<!-- <Tab class="flex justify-center" bind:group={$tabSet} name="settings" value={'/settings'}>
+			<svelte:fragment slot="lead"><MenuBookIcon /></svelte:fragment>
+		</Tab> -->
 	</TabGroup>
 {/if}
