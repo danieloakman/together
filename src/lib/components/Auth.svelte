@@ -20,6 +20,8 @@
 	$: if (username.length || password.length) {
 		error = '';
 	}
+
+	$: username = username.toLowerCase();
 </script>
 
 <!-- Auth card looks weird in landscape mode. Maybe just lock orientation to portrait only. -->
