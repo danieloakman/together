@@ -10,23 +10,23 @@ PODS:
     - Capacitor
 
 DEPENDENCIES:
-  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
-  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
-  - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
-  - "CapacitorGeolocation (from `../../node_modules/@capacitor/geolocation`)"
-  - "CapacitorPreferences (from `../../node_modules/@capacitor/preferences`)"
+  - "Capacitor (from `../../node_modules/.pnpm/@capacitor+ios@5.0.4_@capacitor+core@5.0.4/node_modules/@capacitor/ios`)"
+  - "CapacitorCordova (from `../../node_modules/.pnpm/@capacitor+ios@5.0.4_@capacitor+core@5.0.4/node_modules/@capacitor/ios`)"
+  - "CapacitorFilesystem (from `../../node_modules/.pnpm/@capacitor+filesystem@5.0.2_@capacitor+core@5.0.4/node_modules/@capacitor/filesystem`)"
+  - "CapacitorGeolocation (from `../../node_modules/.pnpm/@capacitor+geolocation@5.0.2_@capacitor+core@5.0.4/node_modules/@capacitor/geolocation`)"
+  - "CapacitorPreferences (from `../../node_modules/.pnpm/@capacitor+preferences@5.0.2_@capacitor+core@5.0.4/node_modules/@capacitor/preferences`)"
 
 EXTERNAL SOURCES:
   Capacitor:
-    :path: "../../node_modules/@capacitor/ios"
+    :path: "../../node_modules/.pnpm/@capacitor+ios@5.0.4_@capacitor+core@5.0.4/node_modules/@capacitor/ios"
   CapacitorCordova:
-    :path: "../../node_modules/@capacitor/ios"
+    :path: "../../node_modules/.pnpm/@capacitor+ios@5.0.4_@capacitor+core@5.0.4/node_modules/@capacitor/ios"
   CapacitorFilesystem:
-    :path: "../../node_modules/@capacitor/filesystem"
+    :path: "../../node_modules/.pnpm/@capacitor+filesystem@5.0.2_@capacitor+core@5.0.4/node_modules/@capacitor/filesystem"
   CapacitorGeolocation:
-    :path: "../../node_modules/@capacitor/geolocation"
+    :path: "../../node_modules/.pnpm/@capacitor+geolocation@5.0.2_@capacitor+core@5.0.4/node_modules/@capacitor/geolocation"
   CapacitorPreferences:
-    :path: "../../node_modules/@capacitor/preferences"
+    :path: "../../node_modules/.pnpm/@capacitor+preferences@5.0.2_@capacitor+core@5.0.4/node_modules/@capacitor/preferences"
 
 SPEC CHECKSUMS:
   Capacitor: d3d4463573438b9fa65326d1f3549da6f4c21634
@@ -35,6 +35,6 @@ SPEC CHECKSUMS:
   CapacitorGeolocation: 8532cd1585dbf0b5b721fa65ea51a36bf9a71e92
   CapacitorPreferences: 0ad8838944f900284900d9647d9b0145c89ca27d
 
-PODFILE CHECKSUM: f1234f361ca29bb146327be351ed5a8a9112c240
+PODFILE CHECKSUM: 219b3a5c072e9fe2db6f7d84ae30e547ae99ccd0
 
 COCOAPODS: 1.12.1
